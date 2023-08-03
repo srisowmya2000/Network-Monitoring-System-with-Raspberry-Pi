@@ -25,6 +25,20 @@ As shown in figure 1, the snort is a open source tool used on raspberry pi which
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/778c1246-e179-4946-aa05-92a656534359)
 
 
+**INSTALLATION**
+Installation of Raspbian OS
+•	Download the Raspbian image from the https://www.raspberrypi.com/software/operating-systems/
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/0d60cb90-9019-41a4-a323-3e7cbe07e5c4)
+
+•	Use the Etcher to flash/write the image into the SD card. (Download Etcher https://www.balena.io/etcher#download-etcher).
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/0dccdbd8-b657-4b59-bce2-d9a59a8c72fb)
+•	Insert the SD card into Raspberry Pi and the Raspbian OS will boot up and prompt to enter the username and password. 
+•	Now the Raspberry Pi and the SD card are ready to work.
+
+
+
+
+
 
 
 
