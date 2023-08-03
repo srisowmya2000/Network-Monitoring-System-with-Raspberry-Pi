@@ -40,7 +40,7 @@ Installation of Raspbian OS
 
 Installation of Snort 
 •Firstly, Update the raspberry pi to install Snort. By using the below command.
-_**_sudo apt update _**_
+**_sudo apt update _**
 
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/e0aac24f-6a86-4ea0-8cfb-a548339854df)
 
@@ -51,85 +51,105 @@ _**_sudo apt update _**_
 
 •	Now enter the IP address of the network.
 •	To Check the version of snort
-**_snort --version_**__
- 
-Figure 9
- 
-RULES
-Customize Rules in Snort
+**_snort --version_**_
+
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/618fd045-0b47-4187-8b0e-c4f31641cc78)
+
+**RULES**
+_Customize Rules in Snort_
 •	There are community rules for snort, we can customize our own rules and make it work. The more powerful rules we implement the more powerful IDS. 
 •	Firstly, we need to write rules in local rules and comment on all the other rules to see the working of the rule. (disable the other rules).
- 
-Figure 10
+
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/40cc1bcc-248f-4ca7-b0b2-961ab2bf713a)
+
 •	Now, using the below command to view the local rules write our own rules.
-Sudo nano /etc/snort/rules/local.rules
+**Sudo nano /etc/snort/rules/local.rules**__
  
-Figure 11
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/711b8b57-8d03-49ea-941b-8c6ec43360b1)
+
 •	Writing our first rule about ping. If we receive any ping from another IP that should be detected and saved in the log file also display the alert in the console.
-alert icmp any any -> $HOME_NET any (msg:”ICMP Ping Detected” ; sid:1001; rev:1)
+**alert icmp any any -> $HOME_NET any (msg:”ICMP Ping Detected” ; sid:1001; rev:1)**
 
  
-Figure 12
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/b9c4a840-3199-4c58-ae9e-093aac2e459b)
+
 •	Writing the second rule about SSH. When another computer tries to log in with the SSH the logs need to be displayed in the console as well as saved in the log file. By using this command, we can alert the system if someone login. 
-alert tcp any any  -> $HOME_NET 22 (msg:”SSH Authentication attempt” ; sid:1001 ; rev:1)
+**alert tcp any any  -> $HOME_NET 22 (msg:”SSH Authentication attempt” ; sid:1001 ; rev:1)**
 
- 
-Figure 13
+
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/9dad8e3c-df4b-4b09-a1f6-d8905c99f272)
+
 •	The third rule is about FTP. It is similar rule to SSH.Whenever some tries to login we need to get the alert in our console and save the logs. 
-alert tcp any any -> $HOME_NET 21 (msg:"FTP Authentication Attemp";sid:1003;rev:1;)
+**alert tcp any any -> $HOME_NET 21 (msg:"FTP Authentication Attemp";sid:1003;rev:1;)**
  
-Figure 14
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/a2bef1e9-1778-49ce-8feb-95416ef41853)
+
 •	Similarly, we can write our own rules for Telnet, UDP. Also, make it even more complex as it can alert us when a user enters the password correctly or not. 
 •	Writing HTTP rules. For this, we will firstly install Apache server and host a website. We need to host a website in the following process. 
-•	Install the apache2. 
-sudo apt install apache2
+•	Install the apache2._ **sudo apt install apache2**_
  
-Figure 15
- 
-Figure 16 
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/637d05d5-6a4c-427b-ba5f-12690ec4e9af)
+
+
 •	After the installation is done create a directory in /var/www/html/ for the website and start the apache server.
-Sudo mkdir /var/www/html/mywebsite
-Sudo mkdir /var/www/html/mywebsite/index.html
-Sudo service apache2 start. 
+**Sudo mkdir /var/www/html/mywebsite**
+**Sudo mkdir /var/www/html/mywebsite/index.html**
+**Sudo service apache2 start**
  
-Figure 17
-•	Access the website with the  https://IPaddress/directory/index.html 
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/84414066-a1de-40a1-9762-b4d84a5ba6ef)
+
+•	Access the website with the  **https://IPaddress/directory/index.html **
  
-Figure 18
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/73f1d0f1-0c3b-4931-96ae-596a146d0e53)
+
 •	For , the HTTP rule we will write both inbound rule and outbound rule. 
-alert tcp any any -> $HOME_NET 80 (msg:”HTTP traffic INBOUND” ; sid:1004;rev:1)
-alert tcp $HOME_NET 80 -> any any (msg:”HTTP traffic OUTBOUND” ; sid:1005;rev:1) 
-WORKING
+**alert tcp any any -> $HOME_NET 80 (msg:”HTTP traffic INBOUND” ; sid:1004;rev:1)**
+**alert tcp $HOME_NET 80 -> any any (msg:”HTTP traffic OUTBOUND” ; sid:1005;rev:1) **
+
+
+**WORKING**
+
+
 For starting the snort and monitoring the network traffic we use below command where, -l is for logs , -i is for interface -A is for showing it in console – c is for checking the rules from that configure file.
- Command used: sudo snort -q -l /var/log/snort/ -i wlan0 -A console -c /etc/snort/snort.conf
+ Command used: **sudo snort -q -l /var/log/snort/ -i wlan0 -A console -c /etc/snort/snort.conf**__
 •	Working on the ping rule. 
  
-Figure 19
 
- 
-Figure 20
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/1ff8c53e-086b-4351-85c4-6aaf8a8fe5e8)
+
+
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/5c0eeb42-1977-4682-8cd4-91e3dfd5a5aa)
+
+
 •	Working SSH rule.
  
-Figure 21
- 
-Figure 22
-•	Working FTP rule. 
- 
-Figure 23
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/cae52a8a-ee58-4c4b-8a10-ed6b2ad5f830)
 
  
-Figure 24
+
+•	Working FTP rule. 
+ 
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/75018f28-1aa4-4032-a23a-3515a2bfd513)
+
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/9da6e5e0-c1a8-4bb2-9842-b66bb3a381b7)
+
 
 •	Working of HTTP
  
-Figure 25
- 
-Figure 26 
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/347ecb10-e57b-4e45-a562-cd83896d576e)
 
-CONCLUSION
+ 
+![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/712d6d3d-f7e6-420e-83e1-a19160319c63)
+
+
+**CONCLUSION**
 Snort monitors network traffic for suspicious activity and generates alerts when potential security threats are detected. Snort is open-source, highly customizable, and widely used in both small and large-scale network environments for enhancing network security. By regularly monitoring network traffic and responding to alerts generated by Snort, network administrators can quickly identify and respond to potential security threats before they cause significant damage to the network.
- 
-REFERENCE
+
+
+
+
+ 
+**REFERENCE**
 1.	https://untanglingtheworld.medium.com/snort-an-intrusion-detection-system-bc53fa761767
 2.	https://www.snort.org/
 3.	https://koayyongcett.medium.com/snort-installation-in-kali-linux-from-the-source-9a005558a2ea
