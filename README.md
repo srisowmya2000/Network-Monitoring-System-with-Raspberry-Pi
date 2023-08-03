@@ -8,6 +8,7 @@ Snort is an open source-based tool. It is a Network Monitoring system. It uses r
 As shown in figure 1, the snort is a open source tool used on raspberry pi which is capable of monitoring networks. If there is any suspicious activity going on, then it is going to alert and display the alert in console. In this way it protects the trusted network from malicious attackers. 
 
 **PROEJCT WORK**
+
 **Aim:** To build NIDS with raspberry pi using snort. 
 **Apparatus:** 
 •	Raspberry Pi
