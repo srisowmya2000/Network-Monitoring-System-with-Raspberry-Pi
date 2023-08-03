@@ -10,14 +10,19 @@ As shown in figure 1, the snort is a open source tool used on raspberry pi which
 **PROEJCT WORK**
 
 **Aim:** To build NIDS with raspberry pi using snort. 
+
 **Apparatus:** 
 •	Raspberry Pi
 •	HDMI to HDMI cable
 •	Monitor
+
 **Software tools:** 
 •	Snort 
+
 **Network Diagram:**
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/778c1246-e179-4946-aa05-92a656534359)
+
+
 
 
 
