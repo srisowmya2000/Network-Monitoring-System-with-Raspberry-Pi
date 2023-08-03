@@ -39,47 +39,50 @@ Installation of Raspbian OS
 •	Now the Raspberry Pi and the SD card are ready to work.
 
 Installation of Snort 
-•Firstly, Update the raspberry pi to install Snort. By using the below command.
-**_sudo apt update _**
+
+•Firstly, Update the raspberry pi to install Snort. By using the below command.**_sudo apt update _**
 
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/e0aac24f-6a86-4ea0-8cfb-a548339854df)
 
-•	Installing snort by using the below command 
-**_Sudo apt install snort_**
+•	Installing snort by using the below command **_Sudo apt install snort_**
 
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/5e4922f5-d7c0-4782-9276-d57fb812e49b)
 
 •	Now enter the IP address of the network.
-•	To Check the version of snort
-**_snort --version_**_
+
+•	To Check the version of snort **_snort --version_**_
 
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/618fd045-0b47-4187-8b0e-c4f31641cc78)
 
 **RULES**
-_Customize Rules in Snort_
+
+**_Customize Rules in Snort_**
+
 •	There are community rules for snort, we can customize our own rules and make it work. The more powerful rules we implement the more powerful IDS. 
 •	Firstly, we need to write rules in local rules and comment on all the other rules to see the working of the rule. (disable the other rules).
 
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/40cc1bcc-248f-4ca7-b0b2-961ab2bf713a)
 
-•	Now, using the below command to view the local rules write our own rules.
-**Sudo nano /etc/snort/rules/local.rules**__
+•	Now, using the below command to view the local rules write our own rules.**Sudo nano /etc/snort/rules/local.rules**__
  
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/711b8b57-8d03-49ea-941b-8c6ec43360b1)
 
 •	Writing our first rule about ping. If we receive any ping from another IP that should be detected and saved in the log file also display the alert in the console.
+
 **alert icmp any any -> $HOME_NET any (msg:”ICMP Ping Detected” ; sid:1001; rev:1)**
 
  
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/b9c4a840-3199-4c58-ae9e-093aac2e459b)
 
 •	Writing the second rule about SSH. When another computer tries to log in with the SSH the logs need to be displayed in the console as well as saved in the log file. By using this command, we can alert the system if someone login. 
+
 **alert tcp any any  -> $HOME_NET 22 (msg:”SSH Authentication attempt” ; sid:1001 ; rev:1)**
 
 
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/9dad8e3c-df4b-4b09-a1f6-d8905c99f272)
 
 •	The third rule is about FTP. It is similar rule to SSH.Whenever some tries to login we need to get the alert in our console and save the logs. 
+
 **alert tcp any any -> $HOME_NET 21 (msg:"FTP Authentication Attemp";sid:1003;rev:1;)**
  
 ![image](https://github.com/srisowmya2000/Network-Monitoring-System-with-Raspberry-Pi/assets/59259117/a2bef1e9-1778-49ce-8feb-95416ef41853)
